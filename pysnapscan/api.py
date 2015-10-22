@@ -33,18 +33,28 @@ class SnapScan(object):
     This class encapsulates all the functionality of the SnapScan REST API.
 
     Public methods:
-        set_snapcode(snapcode)
-        set_api_key(api_key)
-        generate_qr_code_url([, uid, amount, strict, snap_code_size, img_type])
-        create_cash_up_period(timestamp, ref)
-        get_cash_ups([, page, per_page, offset])
-        get_cash_up_payments(ref[, page, per_page, offset])
-        get_payments([, page, per_page, offset])
-        get_payment(id)
+        set_snapcode(snapcode<str>)
+
+        set_api_key(api_key<str>)
+
+        generate_qr_code_url([, uid<str>, amount<int,float>, strict<bool>,
+                              snap_code_size<int>, img_type<str>])
+
+        create_cash_up_period(timestamp<datetime>, ref<str>)
+
+        get_cash_ups([, page<int>, per_page<int>, offset<int>])
+
+        get_cash_up_payments(ref<str>[, page<int>, per_page<int>, offset<int>])
+
+        get_payments([, page<int>, per_page<int>, offset<int>])
+
+        get_payment(id<int>)
+
 
     Private methods:
-        _get(endpoint[, page, per_page, offset])
-        _post(endpoint, data)
+        _get(endpoint<str>[, page<int>, per_page<int>, offset<int>])
+
+        _post(endpoint<str>, data<dict>)
     """
     BASE_URL = 'https://pos.snapscan.io'
     BASE_API_URL = '%s/merchant/api/v1' % BASE_URL
