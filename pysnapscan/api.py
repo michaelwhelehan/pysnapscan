@@ -29,6 +29,23 @@ class APIError500(APIError):
 
 
 class SnapScan(object):
+    """
+    This class encapsulates all the functionality of the SnapScan REST API.
+
+    Public methods:
+        set_snapcode(snapcode)
+        set_api_key(api_key)
+        generate_qr_code_url([, uid, amount, strict, snap_code_size, img_type])
+        create_cash_up_period(timestamp, ref)
+        get_cash_ups([, page, per_page, offset])
+        get_cash_up_payments(ref[, page, per_page, offset])
+        get_payments([, page, per_page, offset])
+        get_payment(id)
+
+    Private methods:
+        _get(endpoint[, page, per_page, offset])
+        _post(endpoint, data)
+    """
     BASE_URL = 'https://pos.snapscan.io'
     BASE_API_URL = '%s/merchant/api/v1' % BASE_URL
 
