@@ -17,11 +17,20 @@ class SnapScan(object):
     BASE_URL = 'https://pos.snapscan.io'
     BASE_API_URL = '%s/merchant/api/v1' % BASE_URL
 
-    def __init__(self, snapcode, api_key=None):
+    def __init__(self, snapcode=None, api_key=None):
         self.snapcode = snapcode
         self.api_key = api_key
 
+    def set_snapcode(self, snapcode):
+        self.snapcode = snapcode
+
+    def set_api_key(self, api_key):
+        self.api_key = api_key
+
     def _get(self, endpoint, page=None, per_page=None, offset=None):
+        if self.api_key is None:
+            raise APIError(
+                "Please call 'set_api_key' first to use this method")
         url = '%s/%s' (self.BASE_API_URL, endpoint)
         pagination = {}
         if page is not None:
@@ -49,6 +58,9 @@ class SnapScan(object):
                 raise APIError('Server error')
 
     def _post(self, endpoint, data):
+        if self.api_key is None:
+            raise APIError(
+                "Please call 'set_api_key' first to use this method")
         url = '%s/%s' (self.BASE_API_URL, endpoint)
         response = requests.post(
             url, data=json.dumps(data), auth=(self.api_key, ''))
@@ -70,6 +82,9 @@ class SnapScan(object):
 
     def generate_qr_code_url(self, uid=None, amount=None, strict=False,
                              snap_code_size=125, img_type='.png'):
+        if self.snapcode is None:
+            raise APIError(
+                "Please call 'set_snapcode' first to use this method")
         url = '%s/qr/%s%s' % (self.BASE_URL, self.snapcode, img_type)
         params = {
             'snap_code_size': snap_code_size,
