@@ -3,6 +3,11 @@
 
 Python bindings for SnapScan's REST API
 
+## Todo
+
+* Add tests and test code fully
+* Add validators
+
 ## Features
 
 * Generate QR code URL
