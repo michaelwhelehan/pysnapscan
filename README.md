@@ -29,9 +29,18 @@ API_KEY = '8130a729-552d-4eb6-bc3a-726e9c326c1c'
 
 ss = SnapScan(SNAPCODE, API_KEY)
 
-url = ss.generate_qr_code_url()
+url = ss.generate_qr_code_url(
+    uid='1234',
+    amount=100, # amount in Rands
+    snap_code_size=250, # 50 - 500
+    img_type='.svg' # .svg or .png
+)
 
-payments = ss.get_payments()
+payments = ss.get_payments(
+    page=1, # if pagination is needed
+    per_page=10,
+    offset=0
+)
 
 cashup_period = ss.create_cash_up_period(datetime.now(), 'adg322sgq3')
 ...
