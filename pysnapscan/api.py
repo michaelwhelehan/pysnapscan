@@ -3,7 +3,10 @@ Created on 22 Oct 2015
 
 @author: michaelwhelehan
 '''
-import urllib
+try:
+    from urllib import urlencode
+except ImportError:
+    from urllib.parse import urlencode  # Python 3
 import json
 import time
 
@@ -207,7 +210,7 @@ class SnapScan(object):
             params['amount'] = amount * 100
         if strict:
             params['strict'] = 'true'
-        url += '?%s' % urllib.urlencode(params)
+        url += '?%s' % urlencode(params)
         return url
 
     def create_cash_up_period(self, timestamp, ref):
