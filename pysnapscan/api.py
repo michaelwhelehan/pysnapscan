@@ -115,7 +115,7 @@ class SnapScan(object):
         if self.api_key is None:
             raise APIError(
                 "Please call 'set_api_key' first to use this method")
-        url = '%s/%s' (self.BASE_API_URL, endpoint)
+        url = '%s/%s' % (self.BASE_API_URL, endpoint)
         pagination = {}
         if page is not None:
             pagination['page'] = page
@@ -162,7 +162,7 @@ class SnapScan(object):
         if self.api_key is None:
             raise APIError(
                 "Please call 'set_api_key' first to use this method")
-        url = '%s/%s' (self.BASE_API_URL, endpoint)
+        url = '%s/%s' % (self.BASE_API_URL, endpoint)
         response = requests.post(
             url, data=json.dumps(data), auth=(self.api_key, ''))
         if 200 <= response.status_code < 300:
